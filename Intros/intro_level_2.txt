@@ -1,0 +1,4 @@
+Now we will introduce you a new command, 'speed'
+Command 'speed' let's you change the speed of the ship.
+Right now the ship has a limit speed because of the integrity, I+D is investigating new components or mechanims to increase the limit.
+Try to change the speed and eliminate 20 enemies, good luck, Rookie.

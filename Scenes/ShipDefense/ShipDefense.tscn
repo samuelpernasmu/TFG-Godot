@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/ShipDefense/Ship/Ship.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/ShipDefense/ShipDefense.gd" type="Script" id=3]
+
+[node name="ShipDefense" type="Node"]
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_horizontal_guides_": [  ]
+}
+
+[node name="Ship" parent="." instance=ExtResource( 2 )]
+position = Vector2( 70, 305 )
+
+[node name="ShotTime" type="Timer" parent="."]
+process_mode = 0
+wait_time = 1.85
+one_shot = true
+
+[connection signal="dead" from="Ship" to="." method="_on_Ship_dead"]
+[connection signal="emit_life" from="Ship" to="." method="_on_Ship_emit_life"]
+[connection signal="emit_position" from="Ship" to="." method="_on_Ship_emit_position"]
+[connection signal="enemy_collide" from="Ship" to="." method="_on_Ship_enemy_collide"]
+[connection signal="timeout" from="ShotTime" to="." method="_on_ShotTime_timeout"]

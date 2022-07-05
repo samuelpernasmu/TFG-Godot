@@ -1,0 +1,112 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/InterfaceStyle.tres" type="DynamicFont" id=1]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.54902, 0.109804, 0.0745098, 1 )
+border_width_left = 3
+border_width_top = 4
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_bottom_right = 120
+corner_radius_bottom_left = 120
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 650, 20.5 )
+
+[node name="TopInterface" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -659.0
+
+[node name="ColorBG" type="Panel" parent="."]
+anchor_right = 1.0
+margin_bottom = 41.0
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StaticBody2D_top" type="StaticBody2D" parent="."]
+visible = false
+position = Vector2( 0, -38 )
+collision_layer = 10
+collision_mask = 10
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D_top"]
+position = Vector2( 650, 58.5 )
+shape = SubResource( 2 )
+
+[node name="TextLevel" type="Label" parent="."]
+margin_left = 150.0
+margin_top = 5.0
+margin_right = 212.0
+margin_bottom = 37.0
+custom_fonts/font = ExtResource( 1 )
+text = "Level: "
+valign = 1
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Level" type="Label" parent="TextLevel"]
+margin_left = 72.0
+margin_right = 105.0
+margin_bottom = 32.0
+custom_fonts/font = ExtResource( 1 )
+text = "0"
+valign = 1
+
+[node name="TextScore" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -65.0
+margin_top = 5.0
+margin_right = 1.0
+margin_bottom = 37.0
+custom_fonts/font = ExtResource( 1 )
+text = "Score: "
+valign = 1
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Score" type="Label" parent="TextScore"]
+margin_left = 76.0
+margin_right = 225.0
+margin_bottom = 32.0
+custom_fonts/font = ExtResource( 1 )
+text = "00"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextTime" type="Label" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -314.0
+margin_top = 5.0
+margin_right = -258.0
+margin_bottom = 37.0
+custom_fonts/font = ExtResource( 1 )
+text = "Time: "
+valign = 1
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Time" type="Label" parent="TextTime"]
+margin_left = 66.0
+margin_right = 160.0
+margin_bottom = 32.0
+custom_fonts/font = ExtResource( 1 )
+text = "00:00"
+valign = 1

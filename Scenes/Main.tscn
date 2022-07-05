@@ -1,0 +1,50 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Scenes/Main.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/HUD/StartMenu/StartGame.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Levels/Level_0/Level_0.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Levels/Level_1/Level_1.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Levels/Level_2/Level_2.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Enemies/BoxEnemy.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Levels/Level_3/Level_3.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Levels/Level_4/Level_4.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Levels/Level_5/Level_5.tscn" type="PackedScene" id=9]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -2, 0, 0, 0, 0, 0, 1303, 0, 0, 0, 0, 0, 1303, 697, 0, 0, 0, 0, -2, 697, 0, 0, 0, 0, -2, 0 )
+}
+
+[node name="Main" type="Node"]
+script = ExtResource( 1 )
+level_0 = ExtResource( 3 )
+level_1 = ExtResource( 4 )
+level_2 = ExtResource( 5 )
+level_3 = ExtResource( 7 )
+level_4 = ExtResource( 8 )
+level_5 = ExtResource( 9 )
+enemy_scene = ExtResource( 6 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.486275, 0.278431, 0.501961, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SpawnPath" type="Path2D" parent="."]
+position = Vector2( 2.98927, 0 )
+scale = Vector2( 0.994636, 1.00143 )
+curve = SubResource( 1 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="SpawnPath"]
+position = Vector2( -2, 0 )
+
+[node name="SpawnTime" type="Timer" parent="."]
+wait_time = 4.0
+
+[node name="StartGame" parent="." instance=ExtResource( 2 )]
+
+[connection signal="timeout" from="SpawnTime" to="." method="_on_SpawnTime_timeout"]
+[connection signal="start_game" from="StartGame" to="." method="_on_start_game"]

@@ -1,0 +1,7 @@
+That new enemy hits so hard!
+We have developed a new mechanic to defend yourself and control the ship, personalized macros.
+Now you can create your own macros with one command.
+This is how you do: "macro macro-name command argument (id needed) command argument ..."
+You can create a sequence of commands under one simple command, you can also add another macro instead of "command argument".
+Also the command "delete macro-name" erase the macro. You can overwrite one macro but you can add a macro with the same name as the new one.
+Let's see how you do with this new tool.

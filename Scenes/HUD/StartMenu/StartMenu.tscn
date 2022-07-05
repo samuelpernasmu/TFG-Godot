@@ -1,0 +1,352 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Assets/StartMenuMessagesStyle.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Assets/CommandLineStyle.tres" type="StyleBox" id=2]
+[ext_resource path="res://Scenes/HUD/StartMenu/StartMenu.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/HUD/StartMenu/ShowResults.gd" type="Script" id=4]
+[ext_resource path="res://Assets/InterfaceStyle.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Scenes/HUD/StartMenu/ArcadeDisabled.gd" type="Script" id=6]
+[ext_resource path="res://Assets/PopupButtonStyle.tres" type="StyleBox" id=7]
+[ext_resource path="res://Assets/PopupBackgroundStyle.tres" type="StyleBox" id=8]
+[ext_resource path="res://Assets/PopupButtonText.tres" type="DynamicFont" id=9]
+[ext_resource path="res://Scenes/HUD/Interface/Commands/CommandList.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/HUD/StartMenu/ShowSettings.gd" type="Script" id=11]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.043136, 0.166817, 0.248535, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.509804, 0.509804, 0.509804, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.027451, 0.129412, 0.192157, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="StartMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+
+[node name="NewGame" type="Button" parent="."]
+anchor_left = 0.394
+anchor_top = 0.286
+anchor_right = 0.606
+anchor_bottom = 0.356
+margin_left = 0.299988
+margin_top = -0.200012
+margin_right = -0.299988
+margin_bottom = -0.199982
+custom_fonts/font = ExtResource( 1 )
+custom_styles/hover = ExtResource( 2 )
+custom_styles/pressed = ExtResource( 2 )
+custom_styles/normal = ExtResource( 2 )
+text = "New game"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Continue" type="Button" parent="."]
+anchor_left = 0.394
+anchor_top = 0.143
+anchor_right = 0.606
+anchor_bottom = 0.213
+margin_left = 0.299988
+margin_top = -0.100006
+margin_right = -0.299988
+margin_bottom = -0.0999908
+custom_fonts/font = ExtResource( 1 )
+custom_styles/hover = ExtResource( 2 )
+custom_styles/pressed = ExtResource( 2 )
+custom_styles/disabled = ExtResource( 2 )
+custom_styles/normal = ExtResource( 2 )
+text = "Continue"
+
+[node name="Arcade" type="Button" parent="."]
+anchor_left = 0.394
+anchor_top = 0.429
+anchor_right = 0.606
+anchor_bottom = 0.5
+margin_left = 0.299988
+margin_top = -0.300018
+margin_right = -0.299988
+margin_bottom = -1.0
+custom_fonts/font = ExtResource( 1 )
+custom_styles/hover = ExtResource( 2 )
+custom_styles/pressed = ExtResource( 2 )
+custom_styles/disabled = SubResource( 1 )
+custom_styles/normal = ExtResource( 2 )
+text = "Arcade (!)"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ArcadeDisabled" type="Popup" parent="Arcade"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -176.5
+margin_top = -139.5
+margin_right = 176.5
+margin_bottom = 39.5
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="Arcade/ArcadeDisabled"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -176.5
+margin_top = -89.5
+margin_right = 176.5
+margin_bottom = 89.5
+custom_styles/panel = ExtResource( 8 )
+
+[node name="WarningMessage" type="Label" parent="Arcade/ArcadeDisabled"]
+anchor_left = 0.5
+anchor_top = 0.458
+anchor_right = 0.503
+anchor_bottom = 0.458
+margin_left = -172.5
+margin_top = -46.982
+margin_right = 173.441
+margin_bottom = 0.0179901
+custom_fonts/font = ExtResource( 5 )
+text = "Beat the full game to unlock this mode!"
+align = 1
+autowrap = true
+
+[node name="ClosePopup" type="Button" parent="Arcade/ArcadeDisabled"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.5
+margin_top = 20.5
+margin_right = 49.5
+margin_bottom = 60.5
+custom_fonts/font = ExtResource( 9 )
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/normal = ExtResource( 7 )
+text = "Ok"
+
+[node name="ShowResults" type="Button" parent="."]
+anchor_left = 0.394
+anchor_top = 0.571
+anchor_right = 0.606
+anchor_bottom = 0.641
+margin_left = 0.299988
+margin_top = 0.299957
+margin_right = -0.299988
+margin_bottom = 0.299988
+custom_fonts/font = ExtResource( 1 )
+custom_styles/hover = ExtResource( 2 )
+custom_styles/pressed = ExtResource( 2 )
+custom_styles/normal = ExtResource( 2 )
+text = "Show results"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Settings" type="Button" parent="."]
+anchor_left = 0.394
+anchor_top = 0.714
+anchor_right = 0.606
+anchor_bottom = 0.784
+margin_left = 0.299988
+margin_top = 0.199982
+margin_right = -0.299988
+margin_bottom = 0.199951
+custom_fonts/font = ExtResource( 1 )
+custom_styles/hover = ExtResource( 2 )
+custom_styles/pressed = ExtResource( 2 )
+custom_styles/normal = ExtResource( 2 )
+text = "Settings"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShowSettings" type="Popup" parent="Settings"]
+anchor_left = 0.502
+anchor_top = -2.041
+anchor_right = 0.502
+anchor_bottom = -2.041
+margin_left = -650.05
+margin_top = -349.991
+margin_right = 649.95
+margin_bottom = 350.009
+script = ExtResource( 11 )
+
+[node name="CommandList" parent="Settings/ShowSettings" instance=ExtResource( 10 )]
+
+[node name="CloseSettings" type="Button" parent="Settings/ShowSettings"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -50.0
+margin_top = -200.0
+margin_right = 50.0
+margin_bottom = -160.0
+custom_fonts/font = ExtResource( 9 )
+custom_styles/hover = ExtResource( 7 )
+custom_styles/pressed = ExtResource( 7 )
+custom_styles/normal = ExtResource( 7 )
+text = "Close"
+
+[node name="PopupShowResults" type="Popup" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -399.0
+margin_top = -239.0
+margin_right = 401.0
+margin_bottom = 241.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="PopupShowResults"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -400.5
+margin_top = -240.0
+margin_right = 399.5
+margin_bottom = 240.0
+custom_styles/panel = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RowLevel" type="Label" parent="PopupShowResults"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -400.0
+margin_top = -180.0
+margin_right = -200.0
+margin_bottom = 112.0
+custom_fonts/font = ExtResource( 5 )
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RowScore" type="Label" parent="PopupShowResults"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -100.0
+margin_top = 60.0
+margin_right = 100.0
+margin_bottom = 352.0
+custom_fonts/font = ExtResource( 5 )
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RowTime" type="Label" parent="PopupShowResults"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -200.0
+margin_top = 60.0
+margin_bottom = 352.0
+custom_fonts/font = ExtResource( 5 )
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InfoLevel" type="Label" parent="PopupShowResults"]
+margin_right = 200.0
+margin_bottom = 50.0
+custom_fonts/font = ExtResource( 5 )
+text = "Level"
+align = 1
+valign = 2
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InfoScore" type="Label" parent="PopupShowResults"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -100.0
+margin_right = 100.0
+margin_bottom = 50.0
+custom_fonts/font = ExtResource( 5 )
+text = "Score"
+align = 1
+valign = 2
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InfoTime" type="Label" parent="PopupShowResults"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -200.0
+margin_bottom = 50.0
+custom_fonts/font = ExtResource( 5 )
+text = "Time"
+align = 1
+valign = 2
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CloseResults" type="Button" parent="PopupShowResults"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -50.0
+margin_top = -80.0
+margin_right = 50.0
+margin_bottom = -40.0
+custom_fonts/font = ExtResource( 9 )
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/normal = ExtResource( 7 )
+text = "Ok"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="NewGame" to="." method="_on_NewGame_pressed"]
+[connection signal="pressed" from="Continue" to="." method="_on_Continue_pressed"]
+[connection signal="pressed" from="Arcade" to="." method="_on_Arcade_pressed"]
+[connection signal="pressed" from="Arcade/ArcadeDisabled/ClosePopup" to="Arcade/ArcadeDisabled" method="_on_ClosePopup_pressed"]
+[connection signal="pressed" from="ShowResults" to="." method="_on_ShowResults_pressed"]
+[connection signal="pressed" from="Settings" to="." method="_on_Settings_pressed"]
+[connection signal="pressed" from="Settings/ShowSettings/CloseSettings" to="Settings/ShowSettings" method="_on_CloseSettings_pressed"]
+[connection signal="pressed" from="PopupShowResults/CloseResults" to="PopupShowResults" method="_on_CloseResults_pressed"]

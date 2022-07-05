@@ -1,0 +1,1 @@
+{"commands":[["macro",false,[]],["pause",false,[]],["move",false,[2]],["shot",false,[]],["delete",false,[1]],["ray_speed",false,[0]],["ray_degree",false,[0]],["speed",false,[0]],["s",true,[["shot",null]]]]}

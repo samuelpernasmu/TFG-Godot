@@ -1,0 +1,13 @@
+Hellow Rookie, or should i call you Maverick? Will see...
+You have been selected for your fighter pilot skills and your mathematical problem solving skills.
+Up the screen you can see the actual level, the score you achieve and the time you spend to complete the level.
+Down-left we have the status of the ship, right now you can see the life, position, speed ande the weapon you use.
+Down-center you can see the terminal we have developed to control the ship. Here you'll write the commands to communicate with the ship.
+Down-right there is the macro's console, right now deactivated, we have to develop that feature.
+This first level we will introduce you to the main loop of the game and we will show you how to interact with the ship.
+Don't worry, the ship will be protected with a shield on that 'Safe Zone' barrier, so it won't get hurt these first levels.
+On this level you will use two simple commands: 'move' and 'shot'.
+To move the ship you will indicate how much do you want to move from his relative position. 'move 60' will displace the ship 60 positions up from his actual position, 'move -60' will move down the ship 60 positions.
+The command 'shot' will activate the first laser we have develop, in the future we will improve the laser and develop more, a soon as I+D finish his investigations.
+The 'pause' command is also available, it will pause the level and will let you consult the commands.
+On this level you will have to destroy 5 enemies, let's see what you can do, Rookie

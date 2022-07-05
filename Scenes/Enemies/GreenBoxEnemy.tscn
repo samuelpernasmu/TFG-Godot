@@ -1,0 +1,72 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scenes/Enemies/GreenBoxEnemy.gd" type="Script" id=1]
+[ext_resource path="res://Assets/images/Enemies/Boxes/green_box.png" type="Texture" id=2]
+[ext_resource path="res://fonts/rimouski sb.otf" type="DynamicFontData" id=3]
+[ext_resource path="res://Scenes/Enemies/Bullets/LightBullet.tscn" type="PackedScene" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 35, 27 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 30, 32 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 20, 37 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 24
+font_data = ExtResource( 3 )
+
+[node name="GreenBoxEnemy" type="RigidBody2D" groups=["enemies"]]
+collision_mask = 0
+gravity_scale = 0.0
+linear_damp = 0.0
+script = ExtResource( 1 )
+lightbullet = ExtResource( 4 )
+life = 20
+points = 14
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 6
+scale = Vector2( 0.8, 0.8 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+light_mask = 2
+scale = Vector2( 0.8, 0.8 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+light_mask = 2
+scale = Vector2( 0.8, 0.8 )
+shape = SubResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 2 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+
+[node name="PositionText" type="Label" parent="."]
+margin_left = -19.0
+margin_top = -13.0
+margin_right = 29.0
+margin_bottom = 19.0
+rect_scale = Vector2( 0.8, 0.8 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "0"
+align = 1
+valign = 1
+
+[node name="Shot" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="Stop" type="Timer" parent="."]
+wait_time = 0.75
+autostart = true
+
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="timeout" from="Shot" to="." method="_on_Shot_timeout"]
+[connection signal="timeout" from="Stop" to="." method="_on_Stop_timeout"]
