@@ -1,5 +1,6 @@
 # Import cache
 .import/
+addons/
 
 # Binaries
 bin/
