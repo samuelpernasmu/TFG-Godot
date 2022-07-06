@@ -1,8 +1,42 @@
 extends Node
 
-var level_file = 'res://last_level.txt'
-var scores_file = 'res://scores.txt'
-var commands_file = 'res://commands.txt'
+var level_file = 'user://last_level.txt'
+var scores_file = 'user://scores.txt'
+var commands_file = 'user://commands.txt'
+
+enum {
+	ARG_INT,
+	ARG_STRING,
+	ARG_FLOAT,
+	ARG_BOOL
+}
+
+var basic_commands =[
+	["macro",
+		false,
+		[]],
+	["pause",
+		false,
+		[]],
+	["move",
+		false,
+		[ARG_FLOAT]],
+	["shot", 
+		false, 
+		[]],
+	["delete",
+		false,
+		[ARG_STRING]],
+	["ray_speed",
+		false,
+		[ARG_INT]],
+	["ray_degree",
+		false,
+		[ARG_INT]],
+	["speed",
+		false,
+		[ARG_INT]]
+]
 
 var scores = Array()
 
@@ -14,7 +48,8 @@ var level_data = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	for i in 6:
+		scores.append_array([[i, 0, 0]])
 
 func new_game() -> void:
 	level_data.level = 0
@@ -47,6 +82,13 @@ func save_commands():
 func load_commands():
 	var commands
 	var file = File.new()
+	var err = file.file_exists(commands_file)
+	if !err:
+		var command_node = get_tree().get_nodes_in_group("persist")
+		for i in command_node:
+			i.load_commands(basic_commands)
+		return
+	
 	file.open(commands_file, File.READ)
 	
 	var node_data = parse_json(file.get_line())
@@ -91,7 +133,7 @@ func read_scores():
 	var file = File.new()
 	var err = file.file_exists(scores_file)
 	if !err:
-		printerr('File does not exist')
+		return
 	
 	file.open(scores_file, File.READ)
 	var j
@@ -121,7 +163,7 @@ func read_level():
 	var file = File.new()
 	var err = file.file_exists(level_file)
 	if !err:
-		printerr('File does not exist')
+		level_data.level = 0
 	
 	file.open(level_file, File.READ)
 	level_data.level = int(file.get_line())
