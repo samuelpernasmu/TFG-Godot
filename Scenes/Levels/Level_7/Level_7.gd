@@ -7,7 +7,7 @@ export(PackedScene) var power_up
 
 onready var command_handler = get_node("HUD/TopMenu/CommandConsole/CommandHandler")
 
-var enemies = 1
+var enemies = 15
 var redboxes = 3
 var red_values = []
 
