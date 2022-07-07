@@ -59,7 +59,7 @@ build_mode = 1
 polygon = PoolVector2Array( 2.85714, 54.2857, 20, 18.5714, -12.8571, 18.5714, -12.8571, 45.7143 )
 
 [node name="CS_Ship" type="CollisionShape2D" parent="."]
-light_mask = 7
+light_mask = 6
 position = Vector2( -2.28882e-05, -1.42862 )
 scale = Vector2( 0.999999, 0.999999 )
 shape = SubResource( 3 )
