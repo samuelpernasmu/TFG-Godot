@@ -7,7 +7,7 @@ export(PackedScene) var power_up
 
 onready var command_handler = get_node("HUD/TopMenu/CommandConsole/CommandHandler")
 
-var enemies = 15
+var enemies = 1
 var redboxes = 3
 var red_values = []
 
@@ -80,6 +80,7 @@ func finish_game() -> void:
 	$RedBoxEnemiesSpawnTimer.stop()
 	$SeqTimer.stop()
 	$GreenBoxEnemiesSpawn.stop()
+	$BlueBoxEnemiesSpawn.stop()
 	$TotalTime.stop()
 
 func _on_Enemy_die(points, pos) -> void:
@@ -140,6 +141,7 @@ func _on_HUD_intro_finished():
 	$TotalTime.start()
 	$RedBoxEnemiesSpawnTimer.start()
 	$GreenBoxEnemiesSpawn.start()
+	$BlueBoxEnemiesSpawn.start()
 
 
 func _on_HUD_return_main():

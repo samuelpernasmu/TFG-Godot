@@ -11,7 +11,6 @@ onready var command_handler = get_node("CommandHandler")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	input_box.grab_focus()
-	macro_output_text()
 
 func save_commands():
 	var save_dict = {
@@ -21,6 +20,7 @@ func save_commands():
 
 func load_commands(commands):
 	command_handler.valid_commands = commands
+	macro_output_text()
 
 func process_command(text):
 	var words = text.split(" ")
@@ -78,59 +78,6 @@ func get_pos_macro(macro_name):
 			return i
 	return size
 
-func create_macro(words):
-	if words.empty():
-		output_text('Macro\'s name missing')
-		return
-	
-	# primer elemento es el nombre de la macro
-	var macro_name = words.pop_front()
-	var pos = get_pos_macro(macro_name)
-	
-	var macro = [macro_name, true]
-	var commands = []
-	
-	while(!words.empty()):
-		var command_word = words.pop_front()
-		
-		for c in command_handler.valid_commands:
-			# puede almacenar comando u otras macros
-			if c[0] == command_word:
-				if c[0] == macro_name:
-					output_text(str('Failure creating macro ', macro_name, '. cannot create a new macro with an existing macro named the same'))
-					return
-				var argument
-				# si es un comando
-				if !c[1]:
-					# si no tiene argumentos el comando
-					if c[2].empty():
-						argument = null
-					# si tiene argumentos
-					else:
-						argument = words.pop_front()
-						if argument == null:
-							output_text('Missing argument')
-							return
-						if not check_type(argument, c[2][0]):
-							output_text(str('Failure adding command "', command_word, '", parameter ', (0 + 1),
-							' ("', argument, '") is of the wrong type"' ))
-							return
-					commands.append_array([[command_word, argument]])
-				# si es una macro
-				else:
-					# almacenamos las llamadas de comandos de forma consecutiva
-					commands.append_array(c[2])
-	if commands.empty():
-		output_text('No commands provided')
-		return
-	
-	macro.append_array([commands])
-	command_handler.valid_commands.remove(pos)
-	command_handler.valid_commands.push_back(macro)
-	output_text('Macro created successfully!')
-	macro_output_text()
-	
-
 # comrpueba si el tipo del texto es igual que el argumento
 func check_type(string, type):
 	if type == command_handler.ARG_INT:
@@ -163,24 +110,4 @@ func _on_input_text_entered(new_text):
 	input_box.clear()
 	#input_box.release_focus()
 	process_command(new_text)
-
-func _input(event):
-	if event is InputEventKey and event.pressed:
-		match event.scancode:
-			KEY_Q:
-				return 
-			KEY_W:
-				return
-			KEY_E:
-				return 
-			KEY_R:
-				return 
-			KEY_A:
-				return
-			KEY_S:
-				return 
-			KEY_D:
-				return 
-			_:
-				return true
 

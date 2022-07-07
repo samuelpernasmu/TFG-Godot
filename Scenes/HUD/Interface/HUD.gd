@@ -43,9 +43,9 @@ func show_line():
 
 func show_end():
 	var line = end_file.get_line()
-	$PopupIntro/BG_Intro/Intro.text = String(line)
+	$PopupEnd/BG_end/End.text = String(line)
 	if end_file.eof_reached():
-		end_intro()
+		end()
 
 func end_intro():
 	$TopMenu/CommandConsole/inputPanel/input.editable = true
@@ -53,11 +53,19 @@ func end_intro():
 	$PopupIntro/BG_Intro/Start.show()
 	$PopupIntro/BG_Intro/Next.hide()
 
+func end():
+	end_file.close()
+	$PopupEnd/BG_end/Finish.show()
+	$PopupEnd/BG_end/Next.hide()
 
 func write_level():
 	$TopInterface/TextLevel/Level.text = String(GameHandler.level_data.level)
 	prepare_scene()
 
+func show_end_message(text) -> void:
+	$PopupInfoMessage/InfoMessage.text = text
+	$PopupInfoMessage.popup()
+	$FinishTimer.start()
 
 func show_final_message(text) -> void:
 	$PopupInfoMessage/InfoMessage.text = text
@@ -71,11 +79,7 @@ func show_gameover_message(text) -> void:
 
 func _on_MessageTimer_timeout():
 	$PopupInfoMessage.hide()
-	$PopupEnd.popup()
-	var err = end_file.open(path_end, File.READ)
-	if err != OK:
-		printerr("Could not open file, error code ", err)
-	#emit_signal("endgame")
+	emit_signal("endgame")
 
 
 func _on_GameOverTimer_timeout():
@@ -143,3 +147,13 @@ func _on_MainMenu_pressed():
 
 func _on_Finish_pressed():
 	emit_signal("endgame")
+
+
+func _on_FinishTimer_timeout():
+	$PopupInfoMessage.hide()
+	$PopupEnd.popup()
+	var err = end_file.open(path_end, File.READ)
+	if err != OK:
+		printerr("Could not open file, error code ", err)
+	$PopupEnd/BG_end/End.text = 'YOU DID IT!'
+	$FinishTimer.stop()

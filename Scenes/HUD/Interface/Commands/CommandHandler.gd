@@ -144,12 +144,15 @@ func macro(words):
 	macro.append_array([commands])
 	valid_commands.remove(pos)
 	valid_commands.push_back(macro)
+	get_parent().macro_output_text()
 	return 'Macro created successfully!'
 
 
 func delete(macro_name):
 	var pos = get_parent().get_pos_macro(macro_name)
 	valid_commands.remove(pos)
+	get_parent().macro_output_text()
+	return str('Macro ', macro_name, ' deleted successfully!')
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

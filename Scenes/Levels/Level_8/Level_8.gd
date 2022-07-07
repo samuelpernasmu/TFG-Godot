@@ -7,7 +7,7 @@ export(PackedScene) var power_up
 
 onready var command_handler = get_node("HUD/TopMenu/CommandConsole/CommandHandler")
 
-var enemies = 20
+var enemies = 1
 var redboxes = 3
 var red_values = []
 
@@ -80,6 +80,7 @@ func finish_game() -> void:
 	$RedBoxEnemiesSpawnTimer.stop()
 	$SeqTimer.stop()
 	$GreenBoxEnemiesSpawn.stop()
+	$BlueBoxEnemiesSpawn.stop()
 	$TotalTime.stop()
 
 func _on_Enemy_die(points, pos) -> void:
@@ -94,7 +95,8 @@ func _on_Enemy_die(points, pos) -> void:
 			aux_min = "0"
 		if total_seg < 10:
 			aux_seg = "0"
-		$HUD.show_final_message(str("Total Score: ", String(GameHandler.level_data.score), " \nTotal Time: ", aux_min, String(total_min), ":", aux_seg, String(total_seg)))
+		$HUD.show_end_message(str("Total Score: ", String(GameHandler.level_data.score), " \nTotal Time: ", aux_min, String(total_min), ":", aux_seg, String(total_seg)))
+		return
 	if hp == spawn_hp:
 		hp = 0
 		var healthpoint = power_up.instance()
@@ -140,6 +142,7 @@ func _on_HUD_intro_finished():
 	$TotalTime.start()
 	$RedBoxEnemiesSpawnTimer.start()
 	$GreenBoxEnemiesSpawn.start()
+	$BlueBoxEnemiesSpawn.start()
 
 
 func _on_HUD_return_main():
@@ -179,5 +182,3 @@ func _on_SeqTimer_timeout():
 	else:
 		redboxes = 3
 		$RedBoxEnemiesSpawnTimer.start()
-
-
