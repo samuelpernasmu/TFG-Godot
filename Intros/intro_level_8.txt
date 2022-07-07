@@ -1,0 +1,5 @@
+We got it, we are inside the data center, in a few minutes we will end this once and for all.
+But first we need more from you, you have to destroy 20 robots to create a breach on the system.
+Everytime you destroy a robot the AI receive a signal, that how the simulation was prepared.
+If you reach 20 kills the AI have to pause some process and restart one system, in that exact moment we can shut it down.
+All hopes on you Maverick!

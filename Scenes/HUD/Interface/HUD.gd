@@ -14,7 +14,9 @@ signal intro_finished
 onready var popup_pause = get_node("TopMenu/PopupCommandList")
 
 var path_intro = str('res://Intros/intro_level_', GameHandler.level_data.level, '.txt')
+var path_end = str('res://Intros/endgame.txt')
 var intro_file = File.new()
+var end_file = File.new()
 
 func prepare_scene():
 	$TopMenu/CommandConsole/inputPanel/input.editable = false
@@ -37,6 +39,12 @@ func show_line():
 	var line = intro_file.get_line()
 	$PopupIntro/BG_Intro/Intro.text = String(line)
 	if intro_file.eof_reached():
+		end_intro()
+
+func show_end():
+	var line = end_file.get_line()
+	$PopupIntro/BG_Intro/Intro.text = String(line)
+	if end_file.eof_reached():
 		end_intro()
 
 func end_intro():
@@ -63,7 +71,11 @@ func show_gameover_message(text) -> void:
 
 func _on_MessageTimer_timeout():
 	$PopupInfoMessage.hide()
-	emit_signal("endgame")
+	$PopupEnd.popup()
+	var err = end_file.open(path_end, File.READ)
+	if err != OK:
+		printerr("Could not open file, error code ", err)
+	#emit_signal("endgame")
 
 
 func _on_GameOverTimer_timeout():
@@ -127,3 +139,7 @@ func _on_MainMenu_pressed():
 	emit_signal("return_main")
 
 
+
+
+func _on_Finish_pressed():
+	emit_signal("endgame")

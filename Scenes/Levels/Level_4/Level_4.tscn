@@ -304,12 +304,12 @@ scale = Vector2( 1, 0.819004 )
 position = Vector2( 1298, 490 )
 
 [node name="BoxEnemiesSpawnTimer" type="Timer" parent="."]
-wait_time = 9.0
+wait_time = 8.0
 
 [node name="TotalTime" type="Timer" parent="."]
 
 [node name="GreenBoxEnemiesSpawn" type="Timer" parent="."]
-wait_time = 13.0
+wait_time = 12.0
 
 [connection signal="change_degree" from="HUD" to="ShipDefense" method="_on_HUD_change_degree"]
 [connection signal="change_power" from="HUD" to="ShipDefense" method="_on_HUD_change_power"]

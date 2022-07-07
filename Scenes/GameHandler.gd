@@ -43,28 +43,28 @@ var scores = Array()
 var level_data = {
 	level = 0,
 	score = 0,
-	time = '0'
+	time = '00:00'
 }
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	for i in 6:
+	for i in 8:
 		scores.append_array([[i, 0, 0]])
 
 func new_game() -> void:
 	level_data.level = 0
 	level_data.score = 0
-	level_data.time = '0'
+	level_data.time = '00:00'
 	write_level()
 
 func next_level() -> void:
 	level_data.level = level_data.level + 1
 	level_data.score = 0
-	level_data.time = '0'
+	level_data.time = '00:00'
 
 func restart_level() -> void:
 	level_data.score = 0
-	level_data.time = '0'
+	level_data.time = '00:00'
 
 
 func save_commands():
@@ -169,6 +169,6 @@ func read_level():
 	level_data.level = int(file.get_line())
 	file.close()
 	
-	if level_data.level == 7:
+	if level_data.level == 9:
 		level_data.level = -1
 		next_level()

@@ -86,6 +86,80 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="PopupEnd" type="Popup" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BG_end" type="Panel" parent="PopupEnd"]
+anchor_left = 0.335
+anchor_top = 0.286
+anchor_right = 0.666
+anchor_bottom = 0.657
+margin_left = 0.5
+margin_top = -0.200012
+margin_right = 0.200012
+margin_bottom = 0.100006
+custom_styles/panel = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="End" type="Label" parent="PopupEnd/BG_end"]
+anchor_top = 0.058
+anchor_right = 1.0
+anchor_bottom = 0.719
+margin_left = 14.0
+margin_top = -0.0800009
+margin_right = -15.0
+margin_bottom = 0.0599823
+custom_fonts/font = ExtResource( 2 )
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Next" type="Button" parent="PopupEnd/BG_end"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -50.0
+margin_top = -60.0
+margin_right = 50.0
+margin_bottom = -20.0
+custom_fonts/font = ExtResource( 6 )
+custom_styles/hover = ExtResource( 5 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/normal = ExtResource( 5 )
+text = "Next"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Finish" type="Button" parent="PopupEnd/BG_end"]
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -50.0
+margin_top = -60.0
+margin_right = 50.0
+margin_bottom = -20.0
+custom_fonts/font = ExtResource( 6 )
+custom_styles/hover = ExtResource( 5 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/normal = ExtResource( 5 )
+text = "Finish"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="PopupInfoMessage" type="Popup" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -189,6 +263,8 @@ wait_time = 6.0
 
 [connection signal="pressed" from="PopupIntro/BG_Intro/Next" to="." method="show_line"]
 [connection signal="pressed" from="PopupIntro/BG_Intro/Start" to="." method="_on_Start_pressed"]
+[connection signal="pressed" from="PopupEnd/BG_end/Next" to="." method="show_end"]
+[connection signal="pressed" from="PopupEnd/BG_end/Finish" to="." method="_on_Finish_pressed"]
 [connection signal="pause_game" from="TopMenu" to="." method="_on_TopMenu_pause_game"]
 [connection signal="position_changed" from="TopMenu" to="." method="_on_TopMenu_position_changed"]
 [connection signal="ray_degree_changed" from="TopMenu" to="." method="_on_TopMenu_degree_changed"]
