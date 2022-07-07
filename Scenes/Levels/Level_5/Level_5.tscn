@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scenes/Levels/Level_5/Level_5.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/ShipDefense/ShipDefense.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Assets/PopupButtonText.tres" type="DynamicFont" id=10]
 [ext_resource path="res://Assets/PopupBackgroundStyle.tres" type="StyleBox" id=11]
 [ext_resource path="res://Assets/PopupButtonStyle.tres" type="StyleBox" id=12]
+[ext_resource path="res://Scenes/PowerUps/HealthPoints.tscn" type="PackedScene" id=13]
 
 [sub_resource type="DynamicFont" id=1]
 size = 18
@@ -34,6 +35,7 @@ _data = {
 script = ExtResource( 1 )
 enemy_1 = ExtResource( 6 )
 enemy_2 = ExtResource( 5 )
+power_up = ExtResource( 13 )
 
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource( 7 )

@@ -85,7 +85,11 @@ func _on_Area2D_area_entered(area):
 
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("powerups"):
-		life = life + body.get_energy()
+		if life == 100:
+			GameHandler.level_data.score += body.get_energy()
+		else: 
+			life += body.get_energy()
+		body.queue_free()
 		return
 	life = life - body.damage
 	emit_signal("enemy_collide", body.damage)

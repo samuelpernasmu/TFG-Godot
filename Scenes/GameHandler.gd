@@ -1,8 +1,8 @@
 extends Node
 
-var level_file = 'user://last_level.txt'
-var scores_file = 'user://scores.txt'
-var commands_file = 'user://commands.txt'
+var level_file = 'res://last_level.txt'
+var scores_file = 'res://scores.txt'
+var commands_file = 'res://commands.txt'
 
 enum {
 	ARG_INT,

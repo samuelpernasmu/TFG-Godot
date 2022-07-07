@@ -29,6 +29,10 @@ func _ready():
 	popup_pause.get_node("ClosePopup").pause_mode = 2
 	popup_pause.get_node("MainMenu").pause_mode = 2
 
+func _process(delta):
+	$TopInterface/TextScore/Score.text = String(GameHandler.level_data.score)
+	$TopInterface/TextTime/Time.text = String(GameHandler.level_data.time)
+
 func show_line():
 	var line = intro_file.get_line()
 	$PopupIntro/BG_Intro/Intro.text = String(line)

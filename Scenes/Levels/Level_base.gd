@@ -5,11 +5,11 @@ signal return_main
 signal add_points(points)
 signal endgame
 
-var total_score = 0
-var total_time = ""
 var total_seg = 0
 var total_min = 0
 var count_enemies = 0
+var spawn_hp
+var hp = 0
 
 
 # Called when the node enters the scene tree for the first time.

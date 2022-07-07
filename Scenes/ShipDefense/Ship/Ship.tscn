@@ -37,6 +37,8 @@ scale = Vector2( 0.241443, 0.252232 )
 texture = ExtResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 17
+collision_mask = 17
 
 [node name="CSMorro" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( 42.8571, -1.42862 )

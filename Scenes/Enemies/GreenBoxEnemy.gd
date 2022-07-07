@@ -2,7 +2,7 @@ extends RigidBody2D
 
 
 export(PackedScene) var lightbullet
-signal enemy_died(points)
+signal enemy_died(points, pos)
 export var life = 35
 export var points = 12
 export var damage = 5
@@ -19,7 +19,7 @@ func _ready():
 func damage_life(dam):
 	life -= dam
 	if life <= 0:
-		emit_signal("enemy_died", points)
+		emit_signal("enemy_died", points, global_position)
 		queue_free()
 
 func _on_VisibilityNotifier2D_screen_exited():

@@ -2,6 +2,7 @@ extends "res://Scenes/Levels/Level_base.gd"
 
 export(PackedScene) var enemy_1
 export(PackedScene) var enemy_2
+export(PackedScene) var power_up
 
 onready var command_handler = get_node("HUD/TopMenu/CommandConsole/CommandHandler")
 
@@ -16,6 +17,7 @@ func _ready():
 	get_tree().call_group("enemies", "queue_free")
 	check_commands()
 	$HUD.write_level()
+	spawn_hp = randi() % 6 + 3
 	#$HUD/TopMenu.change_speed_display()
 	#$ShipDefense.change_movement()
 
@@ -62,11 +64,11 @@ func finish_game() -> void:
 	$GreenBoxEnemiesSpawn.stop()
 	$TotalTime.stop()
 
-func _on_Enemy_die(points) -> void:
+func _on_Enemy_die(points, pos) -> void:
 	var aux_min = ""
 	var aux_seg = ""
-	total_score += points
-	$HUD.add_points(total_score)
+	GameHandler.level_data.score += points
+	#$HUD.add_points(total_score)
 	enemies = enemies - 1
 	if enemies == 0:
 		finish_game()
@@ -74,12 +76,19 @@ func _on_Enemy_die(points) -> void:
 			aux_min = "0"
 		if total_seg < 10:
 			aux_seg = "0"
-		$HUD.show_final_message(str("Total Score: ", String(total_score), " \nTotal Time: ", aux_min, String(total_min), ":", aux_seg, String(total_seg)))
-
+		$HUD.show_final_message(str("Total Score: ", String(GameHandler.level_data.score), " \nTotal Time: ", aux_min, String(total_min), ":", aux_seg, String(total_seg)))
+	if hp == spawn_hp:
+		hp = 0
+		var healthpoint = power_up.instance()
+		add_child(healthpoint)
+		healthpoint.global_position = pos
+		healthpoint.linear_velocity = Vector2(-100.0, 0.0)
+		return
+	hp += 1
 
 func _on_enemy_damage(points):
-	total_score -= points
-	$HUD.add_points(total_score)
+	GameHandler.level_data.score -= points
+	#$HUD.add_points(total_score)
 
 
 func _on_TotalTime_timeout():
@@ -96,12 +105,12 @@ func _on_TotalTime_timeout():
 	if total_seg < 10:
 		aux_seg = "0"
 	
-	total_time = str(aux_min, String(total_min), ":", aux_seg, String(total_seg))
-	$HUD.add_time(total_time)
+	GameHandler.level_data.time = str(aux_min, String(total_min), ":", aux_seg, String(total_seg))
+	#$HUD.add_time(total_time)
 
 func _on_HUD_endgame():
-	GameHandler.level_data.score = total_score
-	GameHandler.level_data.time = total_time
+#	GameHandler.level_data.score = total_score
+#	GameHandler.level_data.time = total_time
 	emit_signal("endgame")
 
 
@@ -120,8 +129,6 @@ func _on_HUD_return_main():
 	emit_signal("return_main")
 
 func _on_ShipDefense_dead():
-	total_score = 0
-	total_time = 0
 	finish_game()
 	$HUD.show_gameover_message('Game Over')
 

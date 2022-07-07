@@ -2,4 +2,6 @@ We didn't notice before, but the safe zone was missing...
 You are training against an Artificial Intelligence, and it looks like she's starting to take some decisiones on her own.
 We shouldn't be worried about it, we developed all his behaviours and it's not a thread.
 We will add a new type of enemies on this section, let's see how you do it.
+Also, we have develope an orb that can give you some energy in case of damage to the ship.
+This will appear eventually when you destroy an enemy.
 Remember! There is no safe zone, you pay what you break, be carefull!
